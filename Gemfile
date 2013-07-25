@@ -25,3 +25,8 @@ gem 'pg'
 # To use debugger
   # gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'debugger'
+  group :development, :test do
+    gem 'rspec-rails', '~> 2.0'
+    gem 'factory_girl_rails'
+    gem 'database_cleaner'
+  end

@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  http_basic_authenticate_with :name => "movielike", :password => "please"
   # GET /movies
   # GET /movies.json
   def index
@@ -49,6 +50,19 @@ class MoviesController < ApplicationController
   end
 
   def user_likes
-    debugger
+    #Here is the action where user likes unlikes a movie from the show page.
+    #Here we find a movie according to its id and then build like for the movie with the current_user_id from the if part
+    #If the build is not valid we send it to else part where we again find the movie from the Like table and if present then we destroy the like
+    @movie = Movie.find(params[:id])
+    @user = User.find(params[:id])
+    @like = @movie.likes.build({:user_id=> params[:user_id]})
+      if @like.save
+        render json: @like
+      else
+        @movie.likes.find(:first,:conditions=>["user_id = ?",@user.id]).destroy
+        render json: @like.errors, status: :unprocessable_entity
+      end
   end
+
 end
+       
