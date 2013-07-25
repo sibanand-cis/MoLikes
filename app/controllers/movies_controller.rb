@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  http_basic_authenticate_with :name => "movielike", :password => "please"
+  # http_basic_authenticate_with :name => "movielike", :password => "please"
   # GET /movies
   # GET /movies.json
   def index
@@ -57,10 +57,9 @@ class MoviesController < ApplicationController
     @user = User.find(params[:id])
     @like = @movie.likes.build({:user_id=> params[:user_id]})
       if @like.save
-        render json: @like
+        render json: @like,status: :created
       else
         @movie.likes.find(:first,:conditions=>["user_id = ?",@user.id]).destroy
-        render json: @like.errors, status: :unprocessable_entity
       end
   end
 

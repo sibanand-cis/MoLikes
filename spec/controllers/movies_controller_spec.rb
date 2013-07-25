@@ -9,8 +9,7 @@ describe MoviesController do
     it "should like movie through likes" do
       params = {:user_id => @user.id,:movie_id =>@movie.id} 
       get :user_likes, :id => "1", :user_id => @user.id,:movie_id =>@movie.id,:format => :json
-      debugger
-      last_response.status.should eql(200)
+      response.response_code.should == 201
     end
   end
 
@@ -19,7 +18,7 @@ describe MoviesController do
     it "should unlike movie if already liked" do
       @like = Like.create({:user_id=>@user.id,:movie_id=>@movie.id})
       get :user_likes, :id => "1", :user_id => @user.id,:movie_id =>@movie.id,:format => :json
-      last_response.status.should eql(200)
+      response.response_code.should == 200
     end
   end
   
