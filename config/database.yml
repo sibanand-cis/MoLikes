@@ -15,9 +15,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: invoice-project_development
+  database: movielike-project_development
   pool: 5
-  username: invoice-project
+  username: movielike-project
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -41,17 +41,17 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: invoice-project_test
+  database: movielike-project_test
   pool: 5
-  username: invoice-project
+  username: movielike-project
   password:
   template: template0
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: invoice-project_production
+  database: movielike-project_production
   pool: 5
-  username: invoice-project
+  username: movielike-project
   password:
   template: template0
